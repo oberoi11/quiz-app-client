@@ -28,7 +28,7 @@ function WriteExam() {
   const [socket, setSocket] = useState(null);
 
   if (typeof window.testingTabSwitchBypass === "undefined") {
-    window.testingTabSwitchBypass = true;
+    window.testingTabSwitchBypass = false;
   }
 
   useEffect(() => {
@@ -291,22 +291,15 @@ function WriteExam() {
             </div>
 
             <div className="flex justify-between">
-              {selectedQuestionIndex > 0 && (
-                <button
-                  className="primary-outlined-btn"
-                  onClick={() => {
-                    setSelectedQuestionIndex(selectedQuestionIndex - 1);
-                  }}
-                >
-                  Previous
-                </button>
-              )}
-
               {selectedQuestionIndex < questions.length - 1 && (
                 <button
                   className="primary-contained-btn"
                   onClick={() => {
-                    setSelectedQuestionIndex(selectedQuestionIndex + 1);
+                    setView("leaderboard");
+                    setTimeout(() => {
+                      setSelectedQuestionIndex((prev) => prev + 1);
+                      setView("questions");
+                    }, 3000);
                   }}
                 >
                   Next
@@ -397,9 +390,9 @@ function WriteExam() {
           </div>
         )}
 
-        {view === "questions" && (
-          <div className="leaderboard mt-4">
-            <h3 className="text-xl">Leaderboard</h3>
+        {view === "leaderboard" && (
+          <div className="leaderboard mt-4 flex flex-col gap-4 items-center">
+            <h1 className="text-2xl">Leaderboard</h1>
             <ul>
               {[...leaderboard]
                 .sort((a, b) => b.correctAnswers - a.correctAnswers)
@@ -407,8 +400,9 @@ function WriteExam() {
                   <li key={index}>
                     {user.name} - {user.correctAnswers} Correct
                   </li>
-              ))}
+                ))}
             </ul>
+            <p className="text-sm text-gray-500">Next question will appear shortly...</p>
           </div>
         )}
       </div>
