@@ -1,6 +1,6 @@
 import React from "react";
 import PageTitle from "../../../components/PageTitle";
-import { message, Modal, Table } from "antd";
+import { message, Table } from "antd";
 import { useDispatch } from "react-redux";
 import { HideLoading, ShowLoading } from "../../../redux/loaderSlice";
 import { getAllReportsByUser } from "../../../apicalls/reports";
