@@ -19,7 +19,7 @@ function WriteExam() {
   const [leaderboard, setLeaderboard] = useState([]);
   const params = useParams();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [view, setView] = useState("instructions");
   const [secondsLeft = 0, setSecondsLeft] = useState(0);
   const [timeUp, setTimeUp] = useState(false);
