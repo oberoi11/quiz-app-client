@@ -1,5 +1,5 @@
 import { message } from "antd";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback  } from "react";
 import { getUserInfo } from "../apicalls/users";
 import { useDispatch, useSelector } from "react-redux";
 import { SetUser } from "../redux/usersSlice.js";
@@ -79,27 +79,27 @@ function ProtectedRoute({ children }) {
     },
   ];
 
-  const getUserData = async () => {
-    try {
-      dispatch(ShowLoading());
-      const response = await getUserInfo();
-      dispatch(HideLoading());
-      if (response.success) {
-        dispatch(SetUser(response.data));
-        if (response.data.isAdmin) {
-          setMenu(adminMenu);
-        } else {
-          setMenu(userMenu);
-        }
+const getUserData = useCallback(async () => {
+  try {
+    dispatch(ShowLoading());
+    const response = await getUserInfo();
+    dispatch(HideLoading());
+    if (response.success) {
+      dispatch(SetUser(response.data));
+      if (response.data.isAdmin) {
+        setMenu(adminMenu);
       } else {
-        message.error(response.message);
+        setMenu(userMenu);
       }
-    } catch (error) {
-      navigate("/login");
-      dispatch(HideLoading());
-      message.error(error.message);
+    } else {
+      message.error(response.message);
     }
-  };
+  } catch (error) {
+    dispatch(HideLoading());
+    navigate("/login");
+    message.error(error.message);
+  }
+}, [dispatch, navigate]);
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
