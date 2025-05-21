@@ -102,12 +102,15 @@ const getUserData = useCallback(async () => {
 }, [dispatch, navigate]);
 
   useEffect(() => {
-    if (localStorage.getItem("token")) {
-      getUserData();
-    } else {
+    if (!localStorage.getItem("token")) {
       navigate("/login");
+      return;
     }
-  }, [getUserData, navigate]);
+
+    if (!user) {
+      getUserData();
+    }
+  }, [getUserData, navigate, user]);
 
   const activeRoute = window.location.pathname;
 
