@@ -206,7 +206,7 @@ function WriteExam() {
       console.log("Fetching exam data...");
       getExamData();
     }
-  }, []);
+  }, [getExamData, params.id]);
 
   return (
     examData && (
