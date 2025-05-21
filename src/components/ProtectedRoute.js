@@ -107,7 +107,7 @@ function ProtectedRoute({ children }) {
     } else {
       navigate("/login");
     }
-  }, []);
+  }, [getUserData, navigate]);
 
   const activeRoute = window.location.pathname;
 
