@@ -72,7 +72,7 @@ function AdminReports() {
 
   useEffect(() => {
     getData(filters);
-  }, [filters, getData]);
+  }, [filters]);
 
   return (
     <div>
