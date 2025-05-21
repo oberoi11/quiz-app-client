@@ -28,7 +28,7 @@ function Home() {
 
   useEffect(() => {
     getExams();
-  }, []);
+  }, [getExams]);
 
   return (
     user && (
