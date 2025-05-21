@@ -85,7 +85,7 @@ function Exams() {
   ];
   useEffect(() => {
     getExamsData();
-  }, []);
+  }, [getExamsData]);
   return (
     <div>
       <div className="flex justify-between mt-2 items-end">
