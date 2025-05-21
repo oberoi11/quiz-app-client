@@ -102,7 +102,7 @@ function WriteExam() {
   }, [view, intervalId, socket, user?._id, params.id]);
 
   useEffect(() => {
-    const newSocket = io("process.env.REACT_APP_BACKEND_URL");
+    const newSocket = io(process.env.REACT_APP_BACKEND_URL);
     setSocket(newSocket);
 
     newSocket.on("force-submit", () => {
