@@ -71,7 +71,7 @@ function AddEditExam() {
     if (params.id) {
       getExamData();
     }
-  }, []);
+  }, [getExamData, params.id]);
 
   const deleteQuestion = async (questionId) => {
     try {
