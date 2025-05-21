@@ -63,7 +63,7 @@ function UserReports() {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [getData]);
 
   return (
     <div>
