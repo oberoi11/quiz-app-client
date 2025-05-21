@@ -55,7 +55,7 @@ function WriteExam() {
         userId: user._id,
       });
     };
-  }, [socket, examData]);
+  }, [socket, examData,params.id, user._id, user.name]);
 
   useEffect(() => {
     const handleTabSwitch = () => {
@@ -199,7 +199,7 @@ function WriteExam() {
       console.log("Time is up! Submitting the exam...");
       calculateResult();
     }
-  }, [timeUp]);
+  }, [timeUp,calculateResult, view]);
 
   useEffect(() => {
     if (params.id) {
